@@ -1,34 +1,44 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Book {
-    private JPanel main;
+public class Dialing {
     private JTabbedPane tabs;
-    private JButton createNewContactButton;
-
+    private JTextField Screen;
     private JButton a7Button;
     private JButton a8Button;
     private JButton a9Button;
     private JButton a5Button;
-    private JButton a4Button;
     private JButton a6Button;
+    private JButton a4Button;
     private JButton a2Button;
     private JButton a3Button;
     private JButton a1Button;
     private JButton a0Button;
-    private JTextField Screen;
     private JButton Clear;
+    private JButton button12;
     private JButton call;
-    private JPanel Favorite;
+    private JButton deleteButton;
+    private JTable RecentCalls;
+    private JPanel main;
     private JPanel Recent;
-    private JPanel Contacts;
-    private JPanel Settings;
+    private JPanel Keypad;
     public String phoneNumber;
+    private DefaultTableModel tableModel;
 
 
-    public Book(){
+    public Dialing() {
         checkphoneLength();
+
+        String[] columnNames = {"Phone Number"};
+        tableModel = new DefaultTableModel(columnNames, 0); // 0 rows initially
+        RecentCalls.setRowHeight(50);
+        RecentCalls.setBackground(new Color(203,148,153));
+        RecentCalls.setModel(tableModel);
+
+
         a0Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,26 +118,33 @@ public class Book {
         });
 
 
-
-
         call.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 phoneNumber = Screen.getText();
-                JCheckBox checkBox = new JCheckBox(phoneNumber);
-                Recent.add(checkBox);
-                tabs.revalidate();
-                tabs.repaint();
+                tableModel.addRow(new Object[]{phoneNumber});
             }
         });
         JFrame frame = new JFrame();
         frame.setContentPane(main);
-        frame.setBounds(200,200,500,500);
+        frame.setBounds(200, 200, 500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(370,500);
+        frame.setSize(370, 500);
         frame.setVisible(true);
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = RecentCalls.getSelectedRow();
+                if (selectedRow != -1) {
+                    // Remove the selected row from the model
+                    tableModel.removeRow(selectedRow);
+                    JOptionPane.showMessageDialog(null, "Selected Call History has been deleted");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a row to delete.", "Invalid Request", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
-
     private void checkphoneLength() {
         if(Screen.getText().length() > 13){
             JOptionPane.showMessageDialog(null, "Phone Number Must be 10 characters long", "Invalid Format", JOptionPane.ERROR_MESSAGE);
@@ -145,6 +162,6 @@ public class Book {
     }
 
     public static void main(String[] args) {
-        new Book();
+        new Dialing();
     }
 }

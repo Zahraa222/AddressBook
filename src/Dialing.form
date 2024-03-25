@@ -22,51 +22,6 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="d093e" binding="Recent" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <tabbedpane title="Recent"/>
-            </constraints>
-            <properties>
-              <background color="-3435367"/>
-            </properties>
-            <border type="none"/>
-            <children>
-              <component id="2986a" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font size="24" style="1"/>
-                  <foreground color="-16777216"/>
-                  <icon value="callhistory.png"/>
-                  <text value="Recents"/>
-                </properties>
-              </component>
-              <component id="ac6fb" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-7314289"/>
-                  <text value="Delete"/>
-                </properties>
-              </component>
-              <component id="e74dc" class="javax.swing.JTable" binding="RecentCalls">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <font size="24" style="1"/>
-                  <foreground color="-11059390"/>
-                  <gridColor color="-3435367"/>
-                  <intercellSpacing width="30" height="0"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <grid id="c8414" binding="Keypad" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
@@ -213,6 +168,51 @@
                   <background color="-7547503"/>
                   <icon value="call.png"/>
                   <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="d093e" binding="Recent" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Recent"/>
+            </constraints>
+            <properties>
+              <background color="-3435367"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="2986a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="24" style="1"/>
+                  <foreground color="-16777216"/>
+                  <icon value="callhistory.png"/>
+                  <text value="Recents"/>
+                </properties>
+              </component>
+              <component id="ac6fb" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-7314289"/>
+                  <text value="Delete"/>
+                </properties>
+              </component>
+              <component id="e74dc" class="javax.swing.JTable" binding="RecentCalls">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="24" style="1"/>
+                  <foreground color="-11059390"/>
+                  <gridColor color="-3435367"/>
+                  <intercellSpacing width="30" height="0"/>
                 </properties>
               </component>
             </children>

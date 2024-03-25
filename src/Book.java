@@ -10,6 +10,8 @@ public class Book {
     private JButton deleteContactButton;
     private JButton editContactButton;
     private JTable contactList;
+    private JButton addToFavoritesButton;
+    private JButton dialButton;
     private JButton a7Button;
     private JButton a8Button;
     private JButton a9Button;
@@ -45,7 +47,7 @@ public class Book {
         addNewContactButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Contacts(Book.this);
+                new Contacts(Book.this, null,-1);
             }
         });
         editContactButton.addActionListener(new ActionListener() {
@@ -61,7 +63,7 @@ public class Book {
                     String birthday = tableModel.getValueAt(selectedRow, 4).toString();
 
 
-                    new Contacts(Book.this);
+                    new Contacts(Book.this, new String[]{name, phoneNumber, address, email, birthday}, selectedRow);
                 } else {
                     JOptionPane.showMessageDialog(null, "Please select a contact to edit.", "No Contact Selected", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -71,6 +73,12 @@ public class Book {
             @Override
             public void actionPerformed(ActionEvent e) {
                 deleteContact();
+            }
+        });
+        dialButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Dialing();
             }
         });
     }
@@ -86,6 +94,12 @@ public class Book {
             JOptionPane.showMessageDialog(null, "Contact Deleted");
         }else{
             JOptionPane.showMessageDialog(null, "Please Select A Contact to Delete", "Invalid format", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void updateContact(String[] contactInfo, int rowIndex) {
+        for (int i = 0; i < contactInfo.length; i++) {
+            tableModel.setValueAt(contactInfo[i], rowIndex, i);
         }
     }
 

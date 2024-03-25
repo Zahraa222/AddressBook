@@ -20,7 +20,7 @@ public class Contacts {
     private Book book;
     private JFrame frame;
 
-    public Contacts(Book book){
+    public Contacts(Book book, String[] contactDetails, int rowIndex){
         this.book = book;
         String[] months = {"January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"};
@@ -43,6 +43,44 @@ public class Contacts {
         frame.setVisible(true);
 
 
+        if (rowIndex >= 0 && contactDetails != null) {
+            // Editing an existing contact
+            nameTextField.setText(contactDetails[0]);
+            phoneTextField.setText(contactDetails[1]);
+            addressTextField.setText(contactDetails[2]);
+            emailTextField.setText(contactDetails[3]);
+            saveButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String name = nameTextField.getText();
+                    String phoneNumber = phoneTextField.getText();
+                    String address = addressTextField.getText();
+                    String email = emailTextField.getText();
+                    String birthdate =  Month.getValue().toString() + " " + Day.getValue().toString() + ", " + Year.getValue().toString();
+
+                    String[] contactInfo = {name, phoneNumber, address, email, birthdate};
+                    book.updateContact(contactInfo, rowIndex);
+                    frame.dispose();
+
+                }
+            });
+        }
+        else{
+            saveButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String name = nameTextField.getText();
+                    String phoneNumber = phoneTextField.getText();
+                    String address = addressTextField.getText();
+                    String email = emailTextField.getText();
+                    String birthdate = Month.getValue().toString() + " " + Day.getValue().toString() + ", " + Year.getValue().toString();
+
+                    // Add the new contact to the Book class
+                    book.addContact(new String[]{name, phoneNumber, address, email, birthdate});
+                    frame.dispose();
+                }
+            });
+        }
 
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -50,24 +88,6 @@ public class Contacts {
                 frame.dispose();
             }
         });
-
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String name = nameTextField.getText();
-                String phoneNumber = phoneTextField.getText();
-                String address = addressTextField.getText();
-                String email = emailTextField.getText();
-                String birthdate =  Month.getValue().toString() + " " + Day.getValue().toString() + ", " + Year.getValue().toString();
-
-                String[] contactInfo = {name, phoneNumber, address, email, birthdate};
-                book.addContact(contactInfo);
-
-            }
-        });
-
-
-
 
     }
 }

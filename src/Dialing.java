@@ -123,6 +123,7 @@ public class Dialing {
             public void actionPerformed(ActionEvent e) {
                 phoneNumber = Screen.getText();
                 tableModel.addRow(new Object[]{phoneNumber});
+                JOptionPane.showMessageDialog(null, "Calling " + phoneNumber + "...");
             }
         });
         JFrame frame = new JFrame();
